@@ -1,0 +1,14 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "bosun",
+  "outputfilename": "bosun",
+  "frontend:dir": "dashboards",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build:bosun-ui",
+  "frontend:dev:watcher": "npm run start:bosun-ui",
+  "frontend:dev:serverUrl": "http://localhost:4200",
+  "author": {
+    "name": "Bosun",
+    "email": "bosun@sap.com"
+  }
+}
