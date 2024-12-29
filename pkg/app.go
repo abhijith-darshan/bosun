@@ -1,12 +1,28 @@
 package pkg
 
 import (
+	"bosun/pkg/internal/cluster"
+	"bosun/pkg/internal/workloads"
 	"context"
+	"k8s.io/client-go/kubernetes"
+	"sigs.k8s.io/controller-runtime/pkg/client"
 )
 
 // App struct
 type App struct {
-	ctx context.Context
+	ctx           context.Context
+	bosunClusters map[string]BosunCluster
+}
+
+type BosunCluster struct {
+	ID        string `json:"id"`
+	Name      string `json:"name"`
+	ShortName string `json:"shortName"`
+	Version   string `json:"version"`
+	client    client.Client
+	clientSet *kubernetes.Clientset
+	namespace *cluster.BosunNamespace
+	pod       *workloads.BosunPod
 }
 
 // NewApp creates a new App application struct
