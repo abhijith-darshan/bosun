@@ -15,14 +15,20 @@ type App struct {
 }
 
 type BosunCluster struct {
-	ID        string `json:"id"`
-	Name      string `json:"name"`
-	ShortName string `json:"shortName"`
-	Version   string `json:"version"`
-	client    client.Client
-	clientSet *kubernetes.Clientset
-	namespace *cluster.BosunNamespace
-	pod       *workloads.BosunPod
+	ID          string `json:"id"`
+	Name        string `json:"name"`
+	ShortName   string `json:"shortName"`
+	Version     string `json:"version"`
+	client      client.Client
+	clientSet   *kubernetes.Clientset
+	namespace   *cluster.BosunNamespace
+	pod         *workloads.BosunPod
+	deployment  *workloads.BosunDeployment
+	daemonSet   *workloads.BosunDaemonSet
+	statefulSet *workloads.BosunStatefulSet
+	replicaSet  *workloads.BosunReplicaSet
+	job         *workloads.BosunJob
+	cronJob     *workloads.BosunCronJob
 }
 
 // NewApp creates a new App application struct
