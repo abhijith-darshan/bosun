@@ -1,0 +1,54 @@
+<div class="grid grid-nogutter">
+    <div class="col-fixed"
+         style="border-right-color: #24242f; width: 16%; height: calc(100vh - 10px)">
+        <div class="row">
+            @if (store.currentContext()?.knownResources && store.currentContext()?.knownResources.length > 0) {
+                <p-accordion [multiple]="true">
+                    @for (resource of store.currentContext().knownResources; track resource.label; let idx = $index) {
+                        <p-accordion-panel [value]="idx">
+                            <p-accordion-header (click)="switchGroupView(resource)">
+                                @if (resource.items.length === 0) {
+                                    <ng-template #toggleicon let-active="active">
+                                    </ng-template>
+                                    <a class="flex gap-2">
+                                        <!--                                        <span class="material-symbols-outlined">
+                                                                                    {{ getMaterialIcon(resource.value) }}
+                                                                                </span>-->
+                                        <span class="mt-1">{{ resource.label }}</span>
+                                    </a>
+                                } @else {
+                                    <span class="flex gap-2">
+<!--                                        <span class="material-symbols-outlined">
+                                            {{ getMaterialIcon(resource.value) }}
+                                        </span>-->
+                                        <span class="mt-1">{{ resource.label }}</span>
+                                    </span>
+                                }
+                            </p-accordion-header>
+                            @if (resource.items?.length > 0) {
+                                <p-accordion-content>
+                                    <p-listbox scrollHeight="100%" [highlightOnSelect]="true"
+                                               [options]="resource.items"
+                                               class="w-full sm:w-56"
+                                               optionLabel="label" (onChange)="switchView($event)" />
+                                </p-accordion-content>
+                            }
+                        </p-accordion-panel>
+                    }
+                </p-accordion>
+            }
+        </div>
+    </div>
+    <div class="col" style="height: calc(100vh - 10px);">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<!--<p-splitter [minSizes]="[15]" [panelSizes]="[15, 85]" [style]="{ height: '100vh' }"
+            gutterSize="2">
+    <ng-template pTemplate>
+
+    </ng-template>
+    <ng-template pTemplate>
+        <router-outlet></router-outlet>
+    </ng-template>
+</p-splitter>-->

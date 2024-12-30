@@ -1,0 +1,122 @@
+<div class="card">
+    <p-table
+        #dt
+        [globalFilterFields]="['metadata.name', 'metadata.namespace']"
+        [loading]="store.podsEntities().length === 0"
+        [scrollHeight]="'calc(100vh - 100px)'"
+        [scrollable]="true"
+        [value]="store.podsEntities()"
+        dataKey="'metadata.uid'"
+        selectionMode="single"
+    >
+        <ng-template #caption>
+            <div class="grid">
+                <div class="col" style="text-align: start">
+                    <p>
+                        <span class="font-bold">Pods</span>
+                    </p>
+                </div>
+                <div class="col mt-2" style="text-align: center">
+                    <p-tag [value]="store.podsEntities().length + ' items'"
+                           severity="info" />
+                </div>
+                <div class="col-2 mt-2" style="text-align: end;">
+                    <p-select
+                        (onChange)="filterByNamespace($event, dt)"
+                        [autoOptionFocus]="true"
+                        [autofocusFilter]="true"
+                        [checkmark]="true"
+                        [filterBy]="'metadata.name'"
+                        [filter]="true"
+                        [fluid]="true"
+                        [ngModel]="store.selectedNamespace()"
+                        [optionLabel]="'metadata.name'"
+                        [options]="store.namespacesEntities()"
+                        [showClear]="true"
+                        [size]="'small'"
+                        placeholder="All namespaces">
+                        <ng-template #selectedItem let-selectedOption>
+                            @if (selectedOption) {
+                                <div class="flex items-center gap-2">
+                                    <div>{{ selectedOption.metadata.name }}</div>
+                                </div>
+                            }
+                        </ng-template>
+                        <ng-template #item let-namespace>
+                            <div class="flex items-center">
+                                <span>{{ namespace.metadata.name }}</span>
+                            </div>
+                        </ng-template>
+                    </p-select>
+                </div>
+                <div class="col-2 mt-2" style="text-align: end">
+                    <p-iconfield>
+                        <input
+                            (input)="dt.filterGlobal($event.target?.value, 'contains')"
+                            class="sm:font-light"
+                            pInputText
+                            placeholder="Search..."
+                            style="font-size: small"
+                            type="text"
+                        />
+                    </p-iconfield>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template #header>
+            <tr>
+                <th style="min-width:15rem">
+                    <div class="flex items-center">
+                        Name
+                    </div>
+                </th>
+                <th style="min-width:15rem">
+                    <div class="flex items-center">
+                        Namespace
+                    </div>
+                </th>
+                <th style="min-width:15rem">
+                    <div class="flex items-center">
+                        Age
+                    </div>
+                </th>
+                <th style="min-width:15rem">
+                    <div class="flex items-center">
+                        Status
+                    </div>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-pod>
+            <tr [pSelectableRow]="pod">
+                <td>
+                    <div class="flex items-center">
+                        <span class="mt-2">{{ pod.metadata.name }}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="flex items-center">
+                        <a (click)="setSelectedNamespace(pod, dt)" class="mt-2"
+                           href="javascript:void(0)">{{ pod.metadata.namespace }}</a>
+                    </div>
+                </td>
+                <td>
+                    <div class="flex items-center">
+                        <span class="mt-2">{{ pod.metadata.creationTimestamp | resourceAge }}</span>
+                    </div>
+                </td>
+                <td>
+                    <div class="flex items-center">
+                        <p-tag [severity]="getStatusSeverity(pod)"
+                               [value]="pod.status.phase" />
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template #emptymessage>
+            <tr>
+                <td colspan="7">No Pods found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

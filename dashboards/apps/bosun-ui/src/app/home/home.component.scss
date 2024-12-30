@@ -1,0 +1,18 @@
+.home-content {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.home-description {
+    width: 50%;
+    text-align: center;
+    padding-top: 5px;
+}
+
+a {
+    text-decoration: none;
+}

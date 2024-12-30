@@ -7,6 +7,7 @@
   "frontend:build": "npm run build:bosun-ui",
   "frontend:dev:watcher": "npm run start:bosun-ui",
   "frontend:dev:serverUrl": "http://localhost:4200",
+  "wailsjsdir": "dashboards/apps/bosun-ui",
   "author": {
     "name": "Bosun",
     "email": "bosun@sap.com"

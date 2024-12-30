@@ -1,0 +1,28 @@
+<svg height="500" viewBox="0 0 500 500" width="500" xmlns="http://www.w3.org/2000/svg">
+    <!-- Outer Circle of Steering Wheel with Azure Blue Color -->
+    <circle cx="250" cy="250" fill="none" r="180" stroke="#0078d4" stroke-width="15" />
+
+    <!-- Wood-like Steering Wheel effect with Material Light Blue -->
+    <circle cx="250" cy="250" fill="none" r="170" stroke="#005a8a" stroke-width="10" />
+
+    <!-- Spokes of the Pirate Wheel with Azure Blue -->
+    <line stroke="#0078d4" stroke-width="15" x1="100" x2="400" y1="250" y2="250" />
+    <line stroke="#0078d4" stroke-width="15" x1="250" x2="250" y1="100" y2="400" />
+    <line stroke="#0078d4" stroke-width="15" x1="150" x2="350" y1="150" y2="350" />
+    <line stroke="#0078d4" stroke-width="15" x1="350" x2="150" y1="150" y2="350" />
+
+    <!-- Pirate Ship Wheel Center (Decorative Hub) with Azure Blue -->
+    <circle cx="250" cy="250" fill="#005a8a" r="25" stroke="#0078d4" stroke-width="8" />
+
+    <!-- Ropes attached to the steering wheel -->
+    <path d="M 100 150 C 120 120, 200 80, 250 100" fill="none" stroke="#005a8a" stroke-width="8" />
+    <path d="M 400 150 C 380 120, 300 80, 250 100" fill="none" stroke="#005a8a" stroke-width="8" />
+    <path d="M 150 350 C 120 380, 200 420, 250 400" fill="none" stroke="#005a8a" stroke-width="8" />
+    <path d="M 350 350 C 380 380, 300 420, 250 400" fill="none" stroke="#005a8a" stroke-width="8" />
+
+    <!-- Text: Bosun in Pirate Font with gap below the wheel -->
+    <text fill="#0078d4" font-family="Roboto, sans-serif" font-size="40" font-weight="bold" text-anchor="middle"
+          x="50%"
+          y="490">Welcome to Bosun!
+    </text>
+</svg>

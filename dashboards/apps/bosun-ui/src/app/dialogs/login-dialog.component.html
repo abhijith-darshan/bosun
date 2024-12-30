@@ -1,0 +1,30 @@
+<div class="card flex justify-content-center">
+    @if (store.isClusterLoginLoading()) {
+        <p-progress-spinner ariaLabel="loading" />
+    }
+    <div>
+        @if (store.isClusterLoginLoading()) {
+            <p>
+                <span class="text-2xl">Logging into cluster {{ store.currentContext()?.name }}...</span>
+            </p>
+            @if (store.currentContext()?.version !== "") {
+                <p>
+                    Cluster Version: {{ store.currentContext().version }}
+                </p>
+            } @else {
+                <p>
+                    Getting Cluster Version...
+                </p>
+            }
+        }
+        @if (store.clusterLoginErrored()) {
+            <p>
+                <span style="color: red">Error: {{ store.clusterLoginError() }}</span>
+            </p>
+            <p class="align-items-center">
+                <p-button label="Retry" icon="pi pi-refresh" severity="info" (onClick)="login()" class="mr-2" />
+                <p-button label="close" icon="pi pi-times" severity="danger" (onClick)="cancel()" />
+            </p>
+        }
+    </div>
+</div>
